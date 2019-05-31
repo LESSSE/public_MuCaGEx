@@ -2,45 +2,6 @@
 
 This project intends to implement a general purpose main cycle for the training, generation, validation and testing of generative models, but applied in this case to the symbolic musical generation task.
 
-## Datasets
-
-It's represented in a file system by a directory with a dsconfig.py file and all extra needed files
-
-The class `dataset` have : 
-* id: a unique id string
-* name: name
-* authors: authors
-* doc: description
-* preprocessing: pre-processing parameters
-* split: list of identifiers for each instance from each part of the split: train, valid and test. (this identifier may be a path if each instance has its own file or the rows in a table for example)
-* metrics: functions that were used to study the dataset and the correspondent results
-* load_instance: function that loads an intance or list of instances given its identifiers or list of identifiers already in the representation that should be injected to a modeloid during the train 
-* save_instance: function which given one instance it can save presistetly and give it a new identifier
-
-### Epic Music
-
-Dataset of symbolically represented orchestral epic music midi collection of epic orchestral pieces based in some kind of creative commons license collected from [epic orchestral group from musescore community](https://musescore.com/groups/epicorchestralmusic)
-
-Reference for each one of the instances in References.xlsx
-
-All information on this data should only be used for machine learning studies. Any use of this information for creative, artÃ­stic or commercial purposes should be informed to the original creators of the data.
-
-In this dataset:
-*  one song is a sequence of blocks
-*  transposition correponds to one copy translated in pitch axis
-* one instance is a set of transpositions of the same music
-* Then, the structure will update its state taken into account on instance at a time, thus it is not stochastic gradient descent (SGD) nor Mini-batch gradient descent. To the best of my knowledge there is no name for this approach and so I'll name it Stochastic-Augmented Gradient Descent (SAGD) and it is a method of optimizing one structure by taken into account a batch of examples that were all obtained by augmenting the same original example in each step. 
-
-### Melody
-
-Dataset of symbolically represented monodic melodies. Collection generated using [Melisma Stochastic Melody Generator](http://www.link.cs.cmu.edu/melody-generator/)
-
-Params used to generate each one of the instances in files params_x_y.txt
-
-All information on this dataset should only be used for machine learning studies. Any use of this information for creative, artistic or commercial purposes should be reported to the creators of the software that created the melodies.
-
-In this dataset we used the same scheme and terminology used for epic music dataset.
-
 ## Models and Modeloids
 
 Models vs Modeloids:
